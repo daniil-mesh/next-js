@@ -12,5 +12,7 @@
     "project": true,
     "tsconfigRootDir": "__dirname"
   },
-  "root": true
+  "root": true,
+  "rules": { "indent": ["error", 2, { "SwitchCase": 1 }] },
+  "exclude": ["next.config.mjs"]
 }
