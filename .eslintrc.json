@@ -5,14 +5,12 @@
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked"
   ],
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "ignorePatterns": ["next.config.mjs"],
+  "plugins": ["@typescript-eslint"],
   "parserOptions": {
     "project": true,
     "tsconfigRootDir": "__dirname"
   },
   "root": true,
-  "rules": { "indent": ["error", 2, { "SwitchCase": 1 }] },
-  "exclude": ["next.config.mjs"]
+  "rules": { "indent": ["error", 2, { "SwitchCase": 1 }] }
 }

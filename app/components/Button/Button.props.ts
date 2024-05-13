@@ -1,8 +1,10 @@
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { EArrow } from '@/app/enums/Arrow';
 import { EView } from '@/app/enums/View';
-import { ButtonHTMLAttributes } from 'react';
 
-export default interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  view?: EView;
+export default interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
   arrow?: EArrow;
+  view?: EView;
 }

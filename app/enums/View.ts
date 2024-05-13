@@ -1,4 +1,4 @@
 export const enum EView {
+  Ghost = 'ghost',
   Primary = 'primary',
-  Ghost = 'ghost'
 }
