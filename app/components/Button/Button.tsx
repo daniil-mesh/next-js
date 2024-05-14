@@ -11,13 +11,14 @@ function Button({
   className,
   ...props
 }: ButtonProps) {
-  let cn = `${className} ${styles.button}`;
+  let cn = className ? `${className} ` : '';
+  cn += `${styles.button} `;
   switch (view) {
     case EView.Ghost:
-      cn += ` ${styles.ghost}`;
+      cn += `${styles.ghost} `;
       break;
     case EView.Primary:
-      cn += ` ${styles.primary}`;
+      cn += `${styles.primary} `;
   }
 
   return (

@@ -1,18 +1,18 @@
 import { EPSize } from '@/app/enums/PSize';
-import { PProps } from './P.props';
+import PProps from './P.props';
 import styles from './P.module.css';
 
 function P({ size = EPSize.Medium, children, className, ...props }: PProps) {
-  let cn = className;
+  let cn = className ? `${className} ` : '';
   switch (size) {
     case EPSize.Large:
-      cn += ` ${styles.large}`;
+      cn += `${styles.large} `;
       break;
     case EPSize.Medium:
-      cn += ` ${styles.medium}`;
+      cn += `${styles.medium} `;
       break;
     case EPSize.Small:
-      cn += ` ${styles.small}`;
+      cn += `${styles.small} `;
   }
 
   return (
