@@ -1,7 +1,7 @@
-import { ETagColor } from '@/app/enums/TagColor';
-import { ETagSize } from '@/app/enums/TagSize';
-import { TagProps } from './Tag.props';
-import styles from './Tag.module.css';
+import { ETagColor } from '@/enums/tag-color';
+import { ETagSize } from '@/enums/tag-size';
+import { TagProps } from './tag.props';
+import styles from './tag.module.css';
 
 function Tag({
   size = ETagSize.Small,

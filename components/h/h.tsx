@@ -1,6 +1,6 @@
-import { EH } from '@/app/enums/H';
-import HProps from './H.props';
-import styles from './H.module.css';
+import { EH } from '@/enums/h';
+import HProps from './h.props';
+import styles from './h.module.css';
 
 function H({ tag, children }: HProps) {
   switch (tag) {

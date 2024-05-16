@@ -1,6 +1,6 @@
-import { EPSize } from '@/app/enums/PSize';
-import PProps from './P.props';
-import styles from './P.module.css';
+import { EPSize } from '@/enums/p-size';
+import PProps from './p.props';
+import styles from './p.module.css';
 
 function P({ size = EPSize.Medium, children, className, ...props }: PProps) {
   let cn = className ? `${className} ` : '';

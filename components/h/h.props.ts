@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { EH } from '@/app/enums/H';
+import { EH } from '@/enums/h';
 
 export default interface HProps {
   children: ReactNode;

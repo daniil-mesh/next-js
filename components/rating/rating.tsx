@@ -1,9 +1,9 @@
 'use client';
 
 import { KeyboardEvent, useEffect, useState } from 'react';
-import RatingProps from './Rating.props';
+import RatingProps from './rating.props';
 import StarIcon from './star.svg';
-import styles from './Rating.module.css';
+import styles from './rating.module.css';
 
 function Rating({
   isEditable = false,

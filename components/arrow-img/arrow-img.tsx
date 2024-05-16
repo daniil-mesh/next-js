@@ -1,7 +1,7 @@
-import { EArrow } from '@/app/enums/Arrow';
+import { EArrow } from '@/enums/arrow';
 import ArrowIcon from './arrow.svg';
-import ArrowImgProps from './ArrowImg.props';
-import styles from './ArrowImg.module.css';
+import ArrowImgProps from './arrow-img.props';
+import styles from './arrow-img.module.css';
 
 function ArrowImg({ arrow }: ArrowImgProps) {
   let cn = styles.arrow;

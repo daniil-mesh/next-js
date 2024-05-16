@@ -1,14 +1,14 @@
 'use client';
 
-import { EArrow } from './enums/Arrow';
-import { EH } from './enums/H';
-import { EPSize } from './enums/PSize';
-import { EView } from './enums/View';
-import Button from './components/Button/Button';
-import H from './components/H/H';
-import P from './components/P/P';
-import Rating from './components/Rating/Rating';
 import { useState } from 'react';
+import { EArrow } from '@/enums/arrow';
+import { EH } from '@/enums/h';
+import { EPSize } from '@/enums/p-size';
+import { EView } from '@/enums/view';
+import Button from '@/components/button/button';
+import H from '@/components/h/h';
+import P from '@/components/p/p';
+import Rating from '@/components/rating/rating';
 
 export default function Home() {
   const [rating, setRating] = useState(4);

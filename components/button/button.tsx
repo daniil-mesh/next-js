@@ -1,8 +1,8 @@
-import { EArrow } from '@/app/enums/Arrow';
-import { EView } from '@/app/enums/View';
-import ArrowImg from '../ArrowImg/ArrowImg';
-import ButtonProps from './Button.props';
-import styles from './Button.module.css';
+import { EArrow } from '@/enums/arrow';
+import { EView } from '@/enums/view';
+import ArrowImg from '@/components/arrow-img/arrow-img';
+import ButtonProps from './button.props';
+import styles from './button.module.css';
 
 function Button({
   view = EView.Primary,
