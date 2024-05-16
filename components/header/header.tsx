@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import styles from './header.module.css';
 
-function Header() {
+function Header({ ...props }: HTMLAttributes<HTMLDivElement>) {
   console.log(styles?.a);
-  return <div>Header</div>;
+  return <div {...props}>Header</div>;
 }
 
 export default Header;

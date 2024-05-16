@@ -4,6 +4,7 @@ import { Noto_Sans_KR } from 'next/font/google';
 import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
 import Sidebar from '@/components/sidebar/sidebar';
+import styles from './layout.module.css';
 import './globals.css';
 
 const notoSansKr = Noto_Sans_KR({ subsets: ['latin'] });
@@ -21,12 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={notoSansKr.className}>
-        <Header />
-        <div>
-          <Sidebar />
+        <div className={styles.wrapper}>
+          <Header className={styles.header} />
+          <Sidebar className={styles.sidebar} />
           {children}
+          <Footer className={styles.footer} />
         </div>
-        <Footer />
       </body>
     </html>
   );

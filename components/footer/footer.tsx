@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import styles from './footer.module.css';
 
-function Footer() {
+function Footer({ ...props }: HTMLAttributes<HTMLDivElement>) {
   console.log(styles?.a);
-  return <div>Footer</div>;
+  return <div {...props}>Footer</div>;
 }
 
 export default Footer;
