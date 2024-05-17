@@ -2,6 +2,7 @@ import { ETagColor } from '@/enums/tag-color';
 import { ETagSize } from '@/enums/tag-size';
 import { TagProps } from './tag.props';
 import styles from './tag.module.css';
+import { cn } from '@/helpers/class-names';
 
 function Tag({
   size = ETagSize.Small,
@@ -11,33 +12,21 @@ function Tag({
   className,
   ...props
 }: TagProps) {
-  let cn = `${className} ${styles.tag}`;
-  switch (size) {
-    case ETagSize.Medium:
-      cn += ` ${styles.medium}`;
-      break;
-    case ETagSize.Small:
-      cn += ` ${styles.small}`;
-  }
-  switch (color) {
-    case ETagColor.Ghost:
-      cn += ` ${styles.ghost}`;
-      break;
-    case ETagColor.Green:
-      cn += ` ${styles.green}`;
-      break;
-    case ETagColor.Grey:
-      cn += ` ${styles.grey}`;
-      break;
-    case ETagColor.Primary:
-      cn += ` ${styles.primary}`;
-      break;
-    case ETagColor.Red:
-      cn += ` ${styles.red}`;
-  }
-
   return (
-    <div className={cn} {...props}>
+    <div
+      className={cn([
+        className,
+        styles.tag,
+        [styles.medium, size === ETagSize.Medium],
+        [styles.small, size === ETagSize.Small],
+        [styles.ghost, color === ETagColor.Ghost],
+        [styles.green, color === ETagColor.Green],
+        [styles.grey, color === ETagColor.Grey],
+        [styles.primary, color === ETagColor.Primary],
+        [styles.red, color === ETagColor.Red],
+      ])}
+      {...props}
+    >
       {href ? <a href={href}>{children}</a> : <>{children}</>}
     </div>
   );

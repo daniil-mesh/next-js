@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { EArrow } from '@/enums/Arrow';
+import { EArrow } from '@/enums/arrow';
 import { EView } from '@/enums/view';
 
 export default interface ButtonProps
