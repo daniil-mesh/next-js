@@ -5,7 +5,7 @@ import RatingProps from './rating.props';
 import StarIcon from './star.svg';
 import styles from './rating.module.css';
 
-function Rating({
+export default function Rating({
   isEditable = false,
   rating,
   setRating,
@@ -75,5 +75,3 @@ function Rating({
     </div>
   );
 }
-
-export default Rating;

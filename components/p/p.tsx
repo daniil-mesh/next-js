@@ -1,9 +1,14 @@
+import { cn } from '@/helpers/class-names';
 import { EPSize } from '@/enums/p-size';
 import PProps from './p.props';
 import styles from './p.module.css';
-import { cn } from '@/helpers/class-names';
 
-function P({ size = EPSize.Medium, children, className, ...props }: PProps) {
+export default function P({
+  size = EPSize.Medium,
+  children,
+  className,
+  ...props
+}: PProps) {
   return (
     <p
       className={cn([
@@ -18,5 +23,3 @@ function P({ size = EPSize.Medium, children, className, ...props }: PProps) {
     </p>
   );
 }
-
-export default P;

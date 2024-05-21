@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
+import Main from '@/components/main/main';
 import Sidebar from '@/components/sidebar/sidebar';
 import styles from './layout.module.css';
 import './globals.css';
@@ -25,7 +26,7 @@ export default function RootLayout({
         <div className={styles.wrapper}>
           <Header className={styles.header} />
           <Sidebar className={styles.sidebar} />
-          {children}
+          <Main className={styles.body}>{children}</Main>
           <Footer className={styles.footer} />
         </div>
       </body>

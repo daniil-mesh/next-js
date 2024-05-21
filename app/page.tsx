@@ -14,7 +14,7 @@ export default function Home() {
   const [rating, setRating] = useState(4);
 
   return (
-    <main>
+    <>
       <H tag={EH.H1}>Text</H>
       <Button>Primary</Button>
       <Button view={EView.Ghost} arrow={EArrow.Right}>
@@ -27,6 +27,6 @@ export default function Home() {
         repellat saepe!
       </P>
       <Rating isEditable={true} rating={rating} setRating={setRating} />
-    </main>
+    </>
   );
 }

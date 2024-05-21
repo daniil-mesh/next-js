@@ -1,11 +1,11 @@
+import { cn } from '@/helpers/class-names';
 import { EArrow } from '@/enums/arrow';
 import { EView } from '@/enums/view';
 import ArrowImg from '@/components/arrow-img/arrow-img';
 import ButtonProps from './button.props';
 import styles from './button.module.css';
-import { cn } from '@/helpers/class-names';
 
-function Button({
+export default function Button({
   view = EView.Primary,
   arrow = EArrow.None,
   children,
@@ -33,5 +33,3 @@ function Button({
     </button>
   );
 }
-
-export default Button;

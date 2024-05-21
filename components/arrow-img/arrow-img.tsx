@@ -3,7 +3,7 @@ import ArrowIcon from './arrow.svg';
 import ArrowImgProps from './arrow-img.props';
 import styles from './arrow-img.module.css';
 
-function ArrowImg({ arrow }: ArrowImgProps) {
+export default function ArrowImg({ arrow }: ArrowImgProps) {
   let cn = styles.arrow;
   switch (arrow) {
     case EArrow.None:
@@ -20,5 +20,3 @@ function ArrowImg({ arrow }: ArrowImgProps) {
     </span>
   );
 }
-
-export default ArrowImg;

@@ -1,10 +1,10 @@
+import { cn } from '@/helpers/class-names';
 import { ETagColor } from '@/enums/tag-color';
 import { ETagSize } from '@/enums/tag-size';
 import { TagProps } from './tag.props';
 import styles from './tag.module.css';
-import { cn } from '@/helpers/class-names';
 
-function Tag({
+export default function Tag({
   size = ETagSize.Small,
   children,
   color = ETagColor.Ghost,
@@ -31,5 +31,3 @@ function Tag({
     </div>
   );
 }
-
-export default Tag;
