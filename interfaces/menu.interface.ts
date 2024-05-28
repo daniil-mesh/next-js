@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { ECategory } from '@/enums/category';
 
 export interface IPageItem {
@@ -18,4 +19,15 @@ export interface IFirstLevelMenuItem {
   id: ECategory;
   name: string;
   route: string;
+}
+
+interface IMenuHookEntity<S> {
+  get: S;
+  set: Dispatch<SetStateAction<S>>;
+}
+
+export interface IMenuHookResult {
+  menuList: IMenuItem[] | undefined;
+  firstCategory: IMenuHookEntity<ECategory>;
+  secondCategory: IMenuHookEntity<string>;
 }

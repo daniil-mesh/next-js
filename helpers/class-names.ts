@@ -12,7 +12,6 @@ export function cn(arr: ClassNameRecord[]): string {
       if (typeof record === 'string') {
         return record;
       }
-      return;
     })
     .join(' ')
     .trim()
