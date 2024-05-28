@@ -1,4 +1,4 @@
-export const enum EView {
+export enum EView {
   Ghost = 'ghost',
   Primary = 'primary',
 }

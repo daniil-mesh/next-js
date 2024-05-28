@@ -1,4 +1,4 @@
-export const enum ETagSize {
+export enum ETagSize {
   Medium = 'medium',
   Small = 'small',
 }

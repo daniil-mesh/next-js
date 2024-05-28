@@ -1,4 +1,4 @@
-export const enum EPSize {
+export enum EPSize {
   Large = 'large',
   Medium = 'medium',
   Small = 'small',

@@ -31,16 +31,3 @@ export const firstLevelMenu: IFirstLevelMenuItem[] = [
     id: ECategory.Products,
   },
 ];
-
-export function getFirstCategoryByString(data: string): ECategory {
-  switch (data) {
-    case ECategory.Books.toString():
-      return ECategory.Books;
-    case ECategory.Products.toString():
-      return ECategory.Products;
-    case ECategory.Services.toString():
-      return ECategory.Products;
-    default:
-      return ECategory.Courses;
-  }
-}

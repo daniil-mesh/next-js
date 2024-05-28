@@ -1,4 +1,4 @@
-export const enum ETagColor {
+export enum ETagColor {
   Ghost = 'ghost',
   Green = 'green',
   Grey = 'grey',

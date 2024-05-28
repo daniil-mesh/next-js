@@ -1,36 +1,41 @@
 'use client';
 
 import { cn } from '@/helpers/class-names';
+import { ECategory } from '@/enums/category';
 import { firstLevelMenu } from '@/helpers/first-category';
 import { IMenuItem } from '@/interfaces/menu.interface';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import useMenu from '@/hooks/use-menu';
 import styles from './menu.module.css';
 
 export default function Menu() {
   const { menuList, firstCategory, secondCategory } = useMenu();
+  const path = usePathname();
+
+  const handleFirstLevel = (id: ECategory) => firstCategory.set(id);
 
   function buildFirstLevel() {
     return firstLevelMenu.map((m) => (
       <div key={m.route}>
-        <a href={`/${m.route}`}>
-          <div
-            className={cn([
-              styles.firstLevel,
-              [styles.firstLevelActive, m.id === firstCategory.get],
-            ])}
-            onClick={(e) => {
-              e.preventDefault();
-              firstCategory.set(m.id);
-            }}
-          >
-            {m.icon}
-            <span>{m.name}</span>
-          </div>
-        </a>
+        <div
+          className={cn([
+            styles.firstLevel,
+            [styles.firstLevelActive, m.id === firstCategory.get],
+          ])}
+          onClick={() => handleFirstLevel(m.id)}
+        >
+          {m.icon}
+          <span>{m.name}</span>
+        </div>
         {m.id === firstCategory.get && buildSecondLevel(m.route)}
       </div>
     ));
   }
+
+  const handleSecondLevel = (name: string) => {
+    secondCategory.set(secondCategory.get === name ? '' : name);
+  };
 
   function buildSecondLevel(route: string) {
     return (
@@ -39,10 +44,7 @@ export default function Menu() {
           <div key={m._id.secondCategory}>
             <div
               className={styles.secondLevel}
-              onClick={(e) => {
-                e.preventDefault();
-                secondCategory.set(m._id.secondCategory);
-              }}
+              onClick={() => handleSecondLevel(m._id.secondCategory)}
             >
               {m._id.secondCategory}
             </div>
@@ -62,15 +64,21 @@ export default function Menu() {
           [styles.secondLevelBlockOpened, m.isOpened],
         ])}
       >
-        {m.pages.map((p) => (
-          <a
-            key={p._id}
-            href={`/${route}/${p.alias}`}
-            className={cn([styles.thirdLevel])}
-          >
-            {p.category}
-          </a>
-        ))}
+        {m.pages.map((p) => {
+          const href = `/${route}/${p.alias}`;
+          return (
+            <Link
+              key={p._id}
+              href={href}
+              className={cn([
+                styles.thirdLevel,
+                [styles.thirdLevelActive, href === path],
+              ])}
+            >
+              {p.category}
+            </Link>
+          );
+        })}
       </div>
     );
   }

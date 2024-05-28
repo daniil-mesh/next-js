@@ -1,4 +1,6 @@
 .firstLevel {
+  cursor: pointer;
+
   display: grid;
   grid-template-columns: 24px 1fr;
   gap: 20px;
