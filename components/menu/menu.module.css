@@ -1,12 +1,11 @@
-.firstLevel {
-  cursor: pointer;
+.menu ul {
+  list-style: none;
+}
 
-  display: grid;
-  grid-template-columns: 24px 1fr;
+.firstLevel {
+  display: flex;
   gap: 20px;
   align-items: center;
-
-  margin-top: 20px;
 
   font-size: 18px;
   font-weight: 500;
@@ -14,25 +13,26 @@
 }
 
 .firstLevelList {
-  padding: 0;
-  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.firstLevelActive,
-.firstLevel:hover {
-  color: var(--primary);
-}
+.secondBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-around;
 
-.firstLevelActive svg,
-.firstLevel:hover svg {
-  fill: var(--primary);
+  margin-top: 15px;
+  margin-left: 12px;
+  padding: 0 0 0 32px;
+
+  border-left: 1px solid #dfdfdf;
 }
 
 .secondLevel {
   cursor: pointer;
-
-  margin-bottom: 10px;
-  padding: 0;
 
   font-size: 12px;
   font-weight: 300;
@@ -43,28 +43,17 @@
   border: none;
 }
 
-.secondBlock {
-  margin-top: 15px;
-  margin-left: 12px;
-  padding: 0 0 0 32px;
-
-  list-style: none;
-
-  border-left: 1px solid #dfdfdf;
-}
-
-.secondLevelBlock {
-  overflow: hidden;
-  padding: 0;
-  list-style: none;
+.thirdBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .thirdLevel {
   cursor: pointer;
 
   display: block;
-
-  margin-bottom: 10px;
 
   font-size: 14px;
   font-weight: 500;
@@ -73,7 +62,13 @@
   outline-offset: -1px;
 }
 
+.firstLevelActive,
+.firstLevel:hover,
+.firstLevelActive svg,
+.firstLevel:hover svg,
+.secondLevelActive,
+.secondLevel:hover,
 .thirdLevelActive,
 .thirdLevel:hover {
-  color: var(--primary);
+  fill: var(--primary);
 }

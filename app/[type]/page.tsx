@@ -1,3 +1,3 @@
-export default function Page() {
-  return <>Testasdasd</>;
+export default function Page({ params }: { params: { type: string } }) {
+  return <>Type: {params.type}</>;
 }

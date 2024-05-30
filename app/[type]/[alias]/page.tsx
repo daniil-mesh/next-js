@@ -1,7 +1,18 @@
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { AliasPageProps } from './page.props';
+import { EH } from '@/enums/h';
+import { ETagColor } from '@/enums/tag-color';
+import { firstLevelMenu } from '@/helpers/first-category';
 import { getMenu } from '@/api/menu';
 import { getPage } from '@/api/page';
 import { getProducts } from '@/api/products';
-import { firstLevelMenu } from '@/helpers/first-category';
+import Advantages from '@/components/advantages/advantages';
+import H from '@/components/h/h';
+import HhCard from '@/components/hh-card/hh-card';
+import Product from '@/components/product/products';
+import Tag from '@/components/tag/tag';
+import styles from './page.module.css';
 
 export const dynamicParams = false;
 
@@ -18,12 +29,60 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function Page({ params }: { params: { alias: string } }) {
+export async function generateMetadata({
+  params,
+}: AliasPageProps): Promise<Metadata> {
   const page = await getPage(params.alias);
-  const products = await getProducts(params.alias);
+  return {
+    title: page?.metaTitle,
+    description: page?.metaDescription,
+  };
+}
+
+export default async function AliasPage({ params }: AliasPageProps) {
+  const page = await getPage(params.alias);
+  const products = await getProducts(page.category);
+
+  if (!page || !products || !params) {
+    notFound();
+  }
+
   return (
-    <>
-      Course {params.alias} <br /> {page.category} <br /> {products.toString()}
-    </>
+    <div className={styles.wrapper}>
+      <div className={styles.title}>
+        <H tag={EH.H1}>{page.title}</H>
+        <Tag color={ETagColor.Grey} aria-label={products.length + 'элементов'}>
+          {products.length}
+        </Tag>
+      </div>
+      <div role="list">
+        {products.map((p) => (
+          <Product role="listitem" key={p._id} product={p} />
+        ))}
+      </div>
+      <div className={styles.hhTitle}>
+        <H tag={EH.H2}>Вакансии - {page.category}</H>
+        <Tag color={ETagColor.Red}>hh.ru</Tag>
+      </div>
+      {page.hh && <HhCard {...page.hh} />}
+      {page.advantages && page.advantages.length > 0 && (
+        <>
+          <H tag={EH.H2}>Преимущства</H>
+          <Advantages advantages={page.advantages} />
+        </>
+      )}
+      {page.seoText && (
+        <div
+          className={styles.seo}
+          dangerouslySetInnerHTML={{ __html: page.seoText }}
+        />
+      )}
+      <H tag={EH.H2}>Получаемые навыки</H>
+      {page.tags.map((t) => (
+        <Tag key={t} color={ETagColor.Grey}>
+          {t}
+        </Tag>
+      ))}
+    </div>
   );
 }

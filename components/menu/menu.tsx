@@ -16,21 +16,26 @@ export default function Menu() {
   const handleFirstLevel = (id: ECategory) => firstCategory.set(id);
 
   function buildFirstLevel() {
-    return firstLevelMenu.map((m) => (
-      <div key={m.route}>
-        <div
-          className={cn([
-            styles.firstLevel,
-            [styles.firstLevelActive, m.id === firstCategory.get],
-          ])}
-          onClick={() => handleFirstLevel(m.id)}
-        >
-          {m.icon}
-          <span>{m.name}</span>
-        </div>
-        {m.id === firstCategory.get && buildSecondLevel(m.route)}
-      </div>
-    ));
+    return (
+      <ul className={styles.firstLevelList}>
+        {firstLevelMenu.map((m) => (
+          <li key={m.route}>
+            <Link
+              href={`/${m.route}`}
+              className={cn([
+                styles.firstLevel,
+                [styles.firstLevelActive, m.id === firstCategory.get],
+              ])}
+              onClick={() => handleFirstLevel(m.id)}
+            >
+              {m.icon}
+              <span>{m.name}</span>
+            </Link>
+            {m.id === firstCategory.get && buildSecondLevel(m.route)}
+          </li>
+        ))}
+      </ul>
+    );
   }
 
   const handleSecondLevel = (name: string) => {
@@ -39,9 +44,9 @@ export default function Menu() {
 
   function buildSecondLevel(route: string) {
     return (
-      <div>
+      <ul className={styles.secondBlock}>
         {menuList?.map((m) => (
-          <div key={m._id.secondCategory}>
+          <li key={m._id.secondCategory}>
             <div
               className={styles.secondLevel}
               onClick={() => handleSecondLevel(m._id.secondCategory)}
@@ -50,42 +55,34 @@ export default function Menu() {
             </div>
             {m._id.secondCategory === secondCategory.get &&
               buildThirdLevel(route, m)}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     );
   }
 
   function buildThirdLevel(route: string, m: IMenuItem) {
     return (
-      <div
-        className={cn([
-          styles.secondLevelBlock,
-          [styles.secondLevelBlockOpened, m.isOpened],
-        ])}
-      >
+      <ul className={styles.thirdBlock}>
         {m.pages.map((p) => {
           const href = `/${route}/${p.alias}`;
           return (
-            <Link
-              key={p._id}
-              href={href}
-              className={cn([
-                styles.thirdLevel,
-                [styles.thirdLevelActive, href === path],
-              ])}
-            >
-              {p.category}
-            </Link>
+            <li key={p._id}>
+              <Link
+                href={href}
+                className={cn([
+                  styles.thirdLevel,
+                  [styles.thirdLevelActive, href === path],
+                ])}
+              >
+                {p.category}
+              </Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     );
   }
 
-  return (
-    <nav>
-      <ul>{buildFirstLevel()}</ul>
-    </nav>
-  );
+  return <nav className={styles.menu}>{buildFirstLevel()}</nav>;
 }
