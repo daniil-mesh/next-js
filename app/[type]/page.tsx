@@ -1,3 +1,3 @@
-export default function Page({ params }: { params: { type: string } }) {
+export default function TypePage({ params }: { params: { type: string } }) {
   return <>Type: {params.type}</>;
 }

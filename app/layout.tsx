@@ -1,12 +1,14 @@
+import { Noto_Sans_KR } from 'next/font/google';
 import React from 'react';
 import type { Metadata } from 'next';
-import { Noto_Sans_KR } from 'next/font/google';
+
 import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
 import Main from '@/components/main/main';
 import Sidebar from '@/components/sidebar/sidebar';
-import styles from './layout.module.css';
+
 import './globals.css';
+import styles from './layout.module.css';
 
 const notoSansKr = Noto_Sans_KR({ subsets: ['latin'] });
 

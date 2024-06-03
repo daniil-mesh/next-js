@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { ECategory } from '@/enums/category';
-import { IMenuItem, IMenuHookResult } from '@/interfaces/menu.interface';
 import { getMenu } from '@/api/menu';
+import { IMenuItem, IMenuHookResult } from '@/interfaces/menu.interface';
 
 export default function useMenu(): IMenuHookResult {
   const [menuList, setMenuList] = useState<IMenuItem[]>();

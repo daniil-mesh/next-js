@@ -1,5 +1,6 @@
 import { AdvantagesProps } from './advantages.props';
 import CheckIcon from './check.svg';
+
 import styles from './advantages.module.css';
 
 export default function Advantages({ advantages }: AdvantagesProps) {

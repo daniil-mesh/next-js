@@ -1,6 +1,7 @@
 'use client';
 
 import { KeyboardEvent, useEffect, useState } from 'react';
+
 import RatingProps from './rating.props';
 import StarIcon from './star.svg';
 import styles from './rating.module.css';

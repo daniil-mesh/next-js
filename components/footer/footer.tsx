@@ -1,5 +1,7 @@
 import React, { HTMLAttributes } from 'react';
+
 import { cn } from '@/helpers/class-names';
+
 import styles from './footer.module.css';
 
 export default function Footer({
@@ -7,7 +9,7 @@ export default function Footer({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <footer className={cn([className, styles.footer])} {...props}>
+    <footer className={cn(className, styles.footer)} {...props}>
       <div>Sakret {new Date().getFullYear()}</div>
       <a href="#" target="_blank">
         1

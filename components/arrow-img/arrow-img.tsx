@@ -1,6 +1,7 @@
 import { EArrow } from '@/enums/arrow';
 import ArrowIcon from './arrow.svg';
 import ArrowImgProps from './arrow-img.props';
+
 import styles from './arrow-img.module.css';
 
 export default function ArrowImg({ arrow }: ArrowImgProps) {

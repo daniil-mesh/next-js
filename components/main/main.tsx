@@ -1,5 +1,4 @@
 import React, { HTMLAttributes } from 'react';
-import { cn } from '@/helpers/class-names';
 
 export default function Main({
   className,
@@ -7,7 +6,7 @@ export default function Main({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <main className={cn([className])} {...props}>
+    <main className={className} {...props}>
       {children}
     </main>
   );

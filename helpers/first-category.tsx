@@ -1,9 +1,9 @@
-import IconCourses from '@/components/menu/icons/courses.svg';
-import IconServices from '@/components/menu/icons/services.svg';
-import IconBooks from '@/components/menu/icons/books.svg';
-import IconProducts from '@/components/menu/icons/products.svg';
 import { ECategory } from '@/enums/category';
 import { IFirstLevelMenuItem } from '@/interfaces/menu.interface';
+import IconBooks from '@/components/menu/icons/books.svg';
+import IconCourses from '@/components/menu/icons/courses.svg';
+import IconProducts from '@/components/menu/icons/products.svg';
+import IconServices from '@/components/menu/icons/services.svg';
 
 export const firstLevelMenu: IFirstLevelMenuItem[] = [
   {

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { AliasPageProps } from './page.props';
+
 import { EH } from '@/enums/h';
 import { ETagColor } from '@/enums/tag-color';
 import { firstLevelMenu } from '@/helpers/first-category';
@@ -10,8 +10,10 @@ import { getProducts } from '@/api/products';
 import Advantages from '@/components/advantages/advantages';
 import H from '@/components/h/h';
 import HhCard from '@/components/hh-card/hh-card';
-import Product from '@/components/product/products';
+import Products from '@/components/products/products';
 import Tag from '@/components/tag/tag';
+
+import { AliasPageProps } from './page.props';
 import styles from './page.module.css';
 
 export const dynamicParams = false;
@@ -49,17 +51,7 @@ export default async function AliasPage({ params }: AliasPageProps) {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.title}>
-        <H tag={EH.H1}>{page.title}</H>
-        <Tag color={ETagColor.Grey} aria-label={products.length + 'элементов'}>
-          {products.length}
-        </Tag>
-      </div>
-      <div role="list">
-        {products.map((p) => (
-          <Product role="listitem" key={p._id} product={p} />
-        ))}
-      </div>
+      <Products products={products} title={page.title} />
       <div className={styles.hhTitle}>
         <H tag={EH.H2}>Вакансии - {page.category}</H>
         <Tag color={ETagColor.Red}>hh.ru</Tag>

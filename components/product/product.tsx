@@ -2,11 +2,12 @@ import { cf } from '@/helpers/currency-formatter';
 import { cn } from '@/helpers/class-names';
 import { ETagColor } from '@/enums/tag-color';
 import { EView } from '@/enums/view';
-import { ProductProps } from './product.props';
 import Button from '@/components/button/button';
 import Divider from '@/components/divider/divider';
 import Rating from '@/components/rating/rating';
 import Tag from '@/components/tag/tag';
+
+import { ProductProps } from './product.props';
 import styles from './product.module.css';
 
 export default function Product({
@@ -82,7 +83,7 @@ export default function Product({
             </div>
           )}
         </div>
-        <Divider className={cn([styles.hr, styles.hr2])} />
+        <Divider className={cn(styles.hr, styles.hr2)} />
         <div className={styles.actions}>
           <Button view={EView.Primary}>Узнать подробнее</Button>
           <Button view={EView.Ghost} className={styles.reviewButton}>

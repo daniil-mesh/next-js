@@ -1,5 +1,6 @@
 import { cn } from '@/helpers/class-names';
 import { EPSize } from '@/enums/p-size';
+
 import PProps from './p.props';
 import styles from './p.module.css';
 
@@ -11,12 +12,12 @@ export default function P({
 }: PProps) {
   return (
     <p
-      className={cn([
+      className={cn(
         className,
         [styles.large, size === EPSize.Large],
         [styles.medium, size === EPSize.Medium],
-        [styles.small, size === EPSize.Small],
-      ])}
+        [styles.small, size === EPSize.Small]
+      )}
       {...props}
     >
       {children}

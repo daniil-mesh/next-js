@@ -2,21 +2,22 @@ import { cf } from '@/helpers/currency-formatter';
 import { cn } from '@/helpers/class-names';
 import { IHhData } from '@/interfaces/page.interface';
 import RateIcon from './rate.svg';
+
 import styles from './hh-card.module.css';
 
-function HhCard({
+export default function HhCard({
   count,
   juniorSalary,
   middleSalary,
   seniorSalary,
-}: IHhData): JSX.Element {
+}: IHhData) {
   return (
     <div className={styles.hh}>
-      <div className={cn([styles.count, styles.card])}>
+      <div className={cn(styles.count, styles.card)}>
         <div className={styles.title}>Всего вакансий</div>
         <div className={styles.countValue}>{count}</div>
       </div>
-      <div className={cn([styles.salary, styles.card])}>
+      <div className={cn(styles.salary, styles.card)}>
         <div>
           <div className={styles.title}>Начальный</div>
           <div className={styles.salaryValue}>{cf(juniorSalary)}</div>
@@ -48,5 +49,3 @@ function HhCard({
     </div>
   );
 }
-
-export default HhCard;

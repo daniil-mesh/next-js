@@ -1,12 +1,14 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+
 import { cn } from '@/helpers/class-names';
 import { ECategory } from '@/enums/category';
 import { firstLevelMenu } from '@/helpers/first-category';
 import { IMenuItem } from '@/interfaces/menu.interface';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import useMenu from '@/hooks/use-menu';
+
 import styles from './menu.module.css';
 
 export default function Menu() {
@@ -22,9 +24,9 @@ export default function Menu() {
           <li key={m.route}>
             <Link
               href={`/${m.route}`}
-              className={cn([
-                styles.firstLevel,
-                [styles.firstLevelActive, m.id === firstCategory.get],
+              className={cn(styles.firstLevel, [
+                styles.firstLevelActive,
+                m.id === firstCategory.get,
               ])}
               onClick={() => handleFirstLevel(m.id)}
             >
@@ -70,9 +72,9 @@ export default function Menu() {
             <li key={p._id}>
               <Link
                 href={href}
-                className={cn([
-                  styles.thirdLevel,
-                  [styles.thirdLevelActive, href === path],
+                className={cn(styles.thirdLevel, [
+                  styles.thirdLevelActive,
+                  href === path,
                 ])}
               >
                 {p.category}

@@ -3,6 +3,7 @@ import { EArrow } from '@/enums/arrow';
 import { EView } from '@/enums/view';
 import ArrowImg from '@/components/arrow-img/arrow-img';
 import ButtonProps from './button.props';
+
 import styles from './button.module.css';
 
 export default function Button({
@@ -14,7 +15,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={cn([
+      className={cn(
         className,
         styles.button,
         [styles.ghost, view === EView.Ghost],
@@ -25,8 +26,8 @@ export default function Button({
         className,
         className,
         className,
-        [styles.primary, view === EView.Primary],
-      ])}
+        [styles.primary, view === EView.Primary]
+      )}
       {...props}
     >
       {children} <ArrowImg arrow={arrow} />
