@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { EH } from '@/enums/h';
-import { ETagColor } from '@/enums/tag-color';
+import { ETagColor } from '@/enums/tag';
 import { firstLevelMenu } from '@/helpers/first-category';
 import { getMenu } from '@/api/menu';
 import { getPage } from '@/api/page';

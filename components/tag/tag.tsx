@@ -1,6 +1,5 @@
 import { cn } from '@/helpers/class-names';
-import { ETagColor } from '@/enums/tag-color';
-import { ETagSize } from '@/enums/tag-size';
+import { ETagColor, ETagSize } from '@/enums/tag';
 
 import { TagProps } from './tag.props';
 import styles from './tag.module.css';

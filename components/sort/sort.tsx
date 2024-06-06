@@ -22,7 +22,7 @@ export default function Sort({
         onClick={() => setSort(ESortType.Rating)}
         className={cn(
           [styles.active, sortType === ESortType.Rating],
-          [styles.reverse, sortType === ESortType.Rating && sortAsc === false]
+          [styles.reverse, sortType === ESortType.Rating && sortAsc]
         )}
       >
         <SortIcon className={styles.sortIcon} />

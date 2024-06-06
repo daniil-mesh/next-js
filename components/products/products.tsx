@@ -4,7 +4,7 @@ import { useEffect, useReducer } from 'react';
 
 import { EH } from '@/enums/h';
 import { ESortType } from '@/enums/sort';
-import { ETagColor } from '@/enums/tag-color';
+import { ETagColor } from '@/enums/tag';
 import { sortReducer } from '@/hooks/sort-reducer';
 import H from '@/components/h/h';
 import Product from '@/components/product/product';
@@ -41,7 +41,9 @@ export default function Products({ products, title }: ProductsProps) {
       </div>
       <div role="list">
         {sortedProducts.map((p) => (
-          <Product role="listitem" key={p._id} product={p} />
+          <div key={p._id}>
+            <Product role="listitem" product={p} />
+          </div>
         ))}
       </div>
     </>

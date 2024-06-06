@@ -5,3 +5,8 @@ export enum ETagColor {
   Primary = 'primary',
   Red = 'red',
 }
+
+export enum ETagSize {
+  Medium = 'medium',
+  Small = 'small',
+}

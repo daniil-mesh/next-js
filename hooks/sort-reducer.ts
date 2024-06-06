@@ -8,8 +8,8 @@ export const sortReducer = (
   switch (action.type) {
     case ESortType.Rating: {
       const sort = state.sortType === ESortType.Rating ? !state.sortAsc : true;
-      const first = sort ? 1 : -1;
-      const second = sort ? -1 : 1;
+      const first = sort ? -1 : 1;
+      const second = sort ? 1 : -1;
       return {
         sortType: ESortType.Rating,
         sortAsc: sort,

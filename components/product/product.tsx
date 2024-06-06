@@ -1,65 +1,95 @@
+import { MouseEventHandler, useState } from 'react';
+import Image from 'next/image';
+
 import { cf } from '@/helpers/currency-formatter';
 import { cn } from '@/helpers/class-names';
-import { ETagColor } from '@/enums/tag-color';
+import { EArrow } from '@/enums/arrow';
+import { ETagColor } from '@/enums/tag';
 import { EView } from '@/enums/view';
 import Button from '@/components/button/button';
 import Divider from '@/components/divider/divider';
 import Rating from '@/components/rating/rating';
+import ReviewForm from '@/components/review-form/review-form';
 import Tag from '@/components/tag/tag';
 
 import { ProductProps } from './product.props';
 import styles from './product.module.css';
+import Review from '../review/review';
+import { declOfNum } from '@/helpers/decl-of-numb';
 
 export default function Product({
   product,
   className,
   ...props
 }: ProductProps) {
+  const [isReviewOpened, setIsReviewOpened] = useState(false);
+
+  const handleOpenReview: MouseEventHandler<HTMLButtonElement> = () => {
+    setIsReviewOpened(!isReviewOpened);
+  };
+
   return (
     <div className={className} {...props}>
       <div className={styles.product}>
-        <div className={styles.logo}></div>
-        <div className={styles.title}>{product.title}</div>
-        <div className={styles.price}>
-          <span>
-            <span className="visuallyHidden">цена </span>
-            {cf(product.price)}
-          </span>
-          {product.oldPrice && (
-            <Tag className={styles.oldPrice} color={ETagColor.Green}>
-              <span className="visuallyHidden">скидка </span>
-              {cf(product.price - product.oldPrice)}
-            </Tag>
-          )}
+        <div className={styles.head}>
+          <Image
+            className={styles.logo}
+            src={product.image}
+            alt={product.title}
+            width={70}
+            height={70}
+          />
+          <div className={styles.title}>{product.title}</div>
+          <div className={styles.tags}>
+            {product.categories.map((c) => (
+              <Tag key={c} className={styles.category} color={ETagColor.Grey}>
+                {c}
+              </Tag>
+            ))}
+          </div>
         </div>
-        <div className={styles.credit}>
-          <span className="visuallyHidden">кредит </span>
-          {cf(product.credit)}/<span className={styles.month}>мес</span>
+
+        <div className={styles.score}>
+          <div className={styles.price}>
+            <span>
+              <span className="visuallyHidden">цена </span>
+              {cf(product.price)}
+            </span>
+            {product.oldPrice && (
+              <Tag className={styles.oldPrice} color={ETagColor.Green}>
+                <span className="visuallyHidden">скидка </span>
+                {cf(product.price - product.oldPrice)}
+              </Tag>
+            )}
+          </div>
+          <div className={styles.credit}>
+            <span className="visuallyHidden">кредит </span>
+            {cf(product.credit)}/<span className={styles.month}>мес</span>
+          </div>
+          <div className={styles.rating}>
+            <span className="visuallyHidden">
+              {'рейтинг ' + (product.reviewAvg ?? product.initialRating)}
+            </span>
+            <Rating rating={product.reviewAvg ?? product.initialRating} />
+          </div>
+          <div className={styles.priceTitle} aria-hidden={true}>
+            цена
+          </div>
+          <div className={styles.creditTitle} aria-hidden={true}>
+            кредит
+          </div>
+          <div className={styles.rateTitle}>
+            <a href="#ref">
+              {product.reviewCount}{' '}
+              {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+            </a>
+          </div>
         </div>
-        <div className={styles.rating}>
-          <span className="visuallyHidden">
-            {'рейтинг ' + (product.reviewAvg ?? product.initialRating)}
-          </span>
-          <Rating rating={product.reviewAvg ?? product.initialRating} />
-        </div>
-        <div className={styles.tags}>
-          {product.categories.map((c) => (
-            <Tag key={c} className={styles.category} color={ETagColor.Grey}>
-              {c}
-            </Tag>
-          ))}
-        </div>
-        <div className={styles.priceTitle} aria-hidden={true}>
-          цена
-        </div>
-        <div className={styles.creditTitle} aria-hidden={true}>
-          кредит
-        </div>
-        <div className={styles.rateTitle}>
-          <a href="#ref">{product.reviewCount}</a>
-        </div>
+
         <Divider className={styles.hr} />
+
         <div className={styles.description}>{product.description}</div>
+
         <div className={styles.feature}>
           {product.characteristics.map((c) => (
             <div className={styles.characteristics} key={c.name}>
@@ -69,6 +99,7 @@ export default function Product({
             </div>
           ))}
         </div>
+
         <div className={styles.advBlock}>
           {product.advantages && (
             <div className={styles.advantages}>
@@ -83,14 +114,35 @@ export default function Product({
             </div>
           )}
         </div>
+
         <Divider className={cn(styles.hr, styles.hr2)} />
+
         <div className={styles.actions}>
           <Button view={EView.Primary}>Узнать подробнее</Button>
-          <Button view={EView.Ghost} className={styles.reviewButton}>
+          <Button
+            view={EView.Ghost}
+            arrow={isReviewOpened ? EArrow.Down : EArrow.Right}
+            className={styles.reviewButton}
+            onClick={handleOpenReview}
+          >
             Читать отзывы
           </Button>
         </div>
       </div>
+
+      {isReviewOpened ? (
+        <div className={styles.reviews}>
+          {product.reviews.map((r) => (
+            <>
+              <article key={r._id}>
+                <Review review={r} />
+              </article>
+              <Divider />
+            </>
+          ))}
+          <ReviewForm productId={product._id} isOpened={isReviewOpened} />
+        </div>
+      ) : null}
     </div>
   );
 }

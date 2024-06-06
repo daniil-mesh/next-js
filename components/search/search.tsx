@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState, FormEventHandler } from 'react';
+import { useState, FormEventHandler, ChangeEventHandler } from 'react';
 
 import { cn } from '@/helpers/class-names';
 import { EView } from '@/enums/view';
@@ -19,7 +19,10 @@ export default function Search({
   const [search, setSearch] = useState<string>('');
   const router = useRouter();
 
-  const goToSearch: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleInput: ChangeEventHandler<HTMLInputElement> = (e) =>
+    setSearch(e.target.value);
+
+  const handleForm: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     void router.push(`/search?q=${search}`);
   };
@@ -29,13 +32,13 @@ export default function Search({
       className={cn(className, styles.search)}
       {...props}
       role="search"
-      onSubmit={goToSearch}
+      onSubmit={handleForm}
     >
       <Input
         className={styles.input}
         placeholder="Search..."
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={handleInput}
       />
       <Button
         view={EView.Primary}

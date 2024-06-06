@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { ETagSize } from '@/enums/tag-size';
-import { ETagColor } from '@/enums/tag-color';
+
+import { ETagColor, ETagSize } from '@/enums/tag';
 
 export interface TagProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;

@@ -3,7 +3,7 @@ import { ForwardedRef, forwardRef } from 'react';
 import { cn } from '@/helpers/class-names';
 
 import { TextareaProps } from './textarea.props';
-import styles from './input.module.css';
+import styles from './textarea.module.css';
 
 function Input(
   { className, error, ...props }: TextareaProps,
