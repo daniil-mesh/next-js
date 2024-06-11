@@ -2,6 +2,6 @@ import { HTMLAttributes } from 'react';
 
 import { IProductModel } from '@/interfaces/product.interface';
 
-export interface ProductProps extends HTMLAttributes<HTMLDivElement> {
+export interface ReviewsProps extends HTMLAttributes<HTMLDivElement> {
   product: IProductModel;
 }

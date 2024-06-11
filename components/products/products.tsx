@@ -41,9 +41,7 @@ export default function Products({ products, title }: ProductsProps) {
       </div>
       <div role="list">
         {sortedProducts.map((p) => (
-          <div key={p._id}>
-            <Product role="listitem" product={p} />
-          </div>
+          <Product role="listitem" key={p._id} product={p} />
         ))}
       </div>
     </>

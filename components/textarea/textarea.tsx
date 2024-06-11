@@ -8,12 +8,11 @@ import styles from './textarea.module.css';
 function Input(
   { className, error, ...props }: TextareaProps,
   ref: ForwardedRef<HTMLTextAreaElement>
-): JSX.Element {
-  const isError = error ? true : false;
+) {
   return (
     <div className={cn(className, styles.textareaWrapper)}>
       <textarea
-        className={cn(styles.textarea, [styles.error, isError])}
+        className={cn(styles.textarea, [styles.error, Boolean(error)])}
         ref={ref}
         {...props}
       />

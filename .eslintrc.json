@@ -12,5 +12,11 @@
     "tsconfigRootDir": "__dirname"
   },
   "root": true,
-  "rules": { "indent": ["error", 2, { "SwitchCase": 1 }] }
+  "rules": {
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      { "checksVoidReturn": false }
+    ]
+  }
 }

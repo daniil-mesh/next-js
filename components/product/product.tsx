@@ -1,21 +1,20 @@
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 import { cf } from '@/helpers/currency-formatter';
 import { cn } from '@/helpers/class-names';
+import { declOfNum } from '@/helpers/decl-of-numb';
 import { EArrow } from '@/enums/arrow';
 import { ETagColor } from '@/enums/tag';
 import { EView } from '@/enums/view';
 import Button from '@/components/button/button';
 import Divider from '@/components/divider/divider';
 import Rating from '@/components/rating/rating';
-import ReviewForm from '@/components/review-form/review-form';
+import Reviews from '@/components/reviews/reviews';
 import Tag from '@/components/tag/tag';
 
 import { ProductProps } from './product.props';
 import styles from './product.module.css';
-import Review from '../review/review';
-import { declOfNum } from '@/helpers/decl-of-numb';
 
 export default function Product({
   product,
@@ -23,6 +22,18 @@ export default function Product({
   ...props
 }: ProductProps) {
   const [isReviewOpened, setIsReviewOpened] = useState(false);
+  const reviewsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    reviewsRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }, [isReviewOpened]);
+
+  const scrollToReview: MouseEventHandler<HTMLDivElement> = () => {
+    setIsReviewOpened(true);
+  };
 
   const handleOpenReview: MouseEventHandler<HTMLButtonElement> = () => {
     setIsReviewOpened(!isReviewOpened);
@@ -66,7 +77,10 @@ export default function Product({
             <span className="visuallyHidden">кредит </span>
             {cf(product.credit)}/<span className={styles.month}>мес</span>
           </div>
-          <div className={styles.rating}>
+          <div
+            className={cn(styles.rating, styles.clickable)}
+            onClick={scrollToReview}
+          >
             <span className="visuallyHidden">
               {'рейтинг ' + (product.reviewAvg ?? product.initialRating)}
             </span>
@@ -78,11 +92,11 @@ export default function Product({
           <div className={styles.creditTitle} aria-hidden={true}>
             кредит
           </div>
-          <div className={styles.rateTitle}>
-            <a href="#ref">
+          <div className={cn(styles.rateTitle, styles.clickable)}>
+            <div onClick={scrollToReview}>
               {product.reviewCount}{' '}
               {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
-            </a>
+            </div>
           </div>
         </div>
 
@@ -130,19 +144,7 @@ export default function Product({
         </div>
       </div>
 
-      {isReviewOpened ? (
-        <div className={styles.reviews}>
-          {product.reviews.map((r) => (
-            <>
-              <article key={r._id}>
-                <Review review={r} />
-              </article>
-              <Divider />
-            </>
-          ))}
-          <ReviewForm productId={product._id} isOpened={isReviewOpened} />
-        </div>
-      ) : null}
+      {isReviewOpened && <Reviews product={product} ref={reviewsRef} />}
     </div>
   );
 }

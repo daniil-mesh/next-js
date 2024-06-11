@@ -53,6 +53,10 @@
   margin-left: 5px;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 .rating {
   align-self: flex-end;
 }
@@ -117,15 +121,6 @@
 
 .characteristicsDots {
   border-bottom: 1px dashed var(--gray-light);
-}
-
-.reviews {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  padding: 30px;
 }
 
 .rateTitle a {

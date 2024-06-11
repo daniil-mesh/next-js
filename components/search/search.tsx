@@ -12,10 +12,7 @@ import { SearchProps } from './search.props';
 import GlassIcon from './glass.svg';
 import styles from './search.module.css';
 
-export default function Search({
-  className,
-  ...props
-}: SearchProps): JSX.Element {
+export default function Search({ className, ...props }: SearchProps) {
   const [search, setSearch] = useState<string>('');
   const router = useRouter();
 
@@ -24,7 +21,7 @@ export default function Search({
 
   const handleForm: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    void router.push(`/search?q=${search}`);
+    router.push(`/search?q=${search}`);
   };
 
   return (

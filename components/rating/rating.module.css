@@ -22,7 +22,7 @@
   gap: 5px;
 }
 
-.error {
+.errorMessage {
   position: absolute;
   bottom: -20px;
   left: 0;
