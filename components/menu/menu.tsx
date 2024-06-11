@@ -1,5 +1,6 @@
 'use client';
 
+import { motion, useReducedMotion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
@@ -14,8 +15,29 @@ import styles from './menu.module.css';
 export default function Menu() {
   const { menuList, firstCategory, secondCategory } = useMenu();
   const path = usePathname();
+  const shouldReduceMotion = useReducedMotion();
 
   const handleFirstLevel = (id: ECategory) => firstCategory.set(id);
+
+  const variants = {
+    visible: {
+      transition: shouldReduceMotion
+        ? {}
+        : {
+            when: 'beforeChildren',
+            staggerChildren: 0.1,
+          },
+    },
+    hidden: {},
+  };
+
+  const variantsChildren = {
+    visible: {
+      opacity: 1,
+      display: 'block',
+    },
+    hidden: { opacity: shouldReduceMotion ? 1 : 0, display: 'none' },
+  };
 
   function buildFirstLevel() {
     return (
@@ -47,43 +69,49 @@ export default function Menu() {
   function buildSecondLevel(route: string) {
     return (
       <ul className={styles.secondBlock}>
-        {menuList?.map((m) => (
-          <li key={m._id.secondCategory}>
-            <div
-              className={styles.secondLevel}
-              onClick={() => handleSecondLevel(m._id.secondCategory)}
-            >
-              {m._id.secondCategory}
-            </div>
-            {m._id.secondCategory === secondCategory.get &&
-              buildThirdLevel(route, m)}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  function buildThirdLevel(route: string, m: IMenuItem) {
-    return (
-      <ul className={styles.thirdBlock}>
-        {m.pages.map((p) => {
-          const href = `/${route}/${p.alias}`;
+        {menuList?.map((m) => {
+          const isOpened = m._id.secondCategory === secondCategory.get;
           return (
-            <li key={p._id}>
-              <Link
-                href={href}
-                className={cn(styles.thirdLevel, [
-                  styles.thirdLevelActive,
-                  href === path,
-                ])}
+            <li key={m._id.secondCategory}>
+              <button
+                className={styles.secondLevel}
+                onClick={() => handleSecondLevel(m._id.secondCategory)}
+                aria-expanded={m.isOpened}
               >
-                {p.category}
-              </Link>
+                {m._id.secondCategory}
+              </button>
+              <motion.ul
+                layout
+                variants={variants}
+                initial={isOpened ? 'visible' : 'hidden'}
+                animate={isOpened ? 'visible' : 'hidden'}
+                className={styles.secondLevelBlock}
+              >
+                {buildThirdLevel(route, m)}
+              </motion.ul>
             </li>
           );
         })}
       </ul>
     );
+  }
+
+  function buildThirdLevel(route: string, m: IMenuItem) {
+    return m.pages.map((p) => (
+      <motion.li key={p._id} variants={variantsChildren}>
+        <Link
+          href={`/${route}/${p.alias}`}
+          tabIndex={m.isOpened ? 0 : -1}
+          className={cn(styles.thirdLevel, [
+            styles.thirdLevelActive,
+            `/${route}/${p.alias}` === path,
+          ])}
+          aria-current={`/${route}/${p.alias}` == path ? 'page' : false}
+        >
+          {p.category}
+        </Link>
+      </motion.li>
+    ));
   }
 
   return <nav className={styles.menu}>{buildFirstLevel()}</nav>;

@@ -1,4 +1,12 @@
-import { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+  ForwardedRef,
+  forwardRef,
+  MouseEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import Image from 'next/image';
 
 import { cf } from '@/helpers/currency-formatter';
@@ -16,11 +24,10 @@ import Tag from '@/components/tag/tag';
 import { ProductProps } from './product.props';
 import styles from './product.module.css';
 
-export default function Product({
-  product,
-  className,
-  ...props
-}: ProductProps) {
+function Product(
+  { product, className, ...props }: ProductProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const [isReviewOpened, setIsReviewOpened] = useState(false);
   const reviewsRef = useRef<HTMLDivElement>(null);
 
@@ -40,7 +47,7 @@ export default function Product({
   };
 
   return (
-    <div className={className} {...props}>
+    <div className={className} ref={ref} {...props}>
       <div className={styles.product}>
         <div className={styles.head}>
           <Image
@@ -148,3 +155,5 @@ export default function Product({
     </div>
   );
 }
+
+export default motion(forwardRef(Product));
