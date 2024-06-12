@@ -1,5 +1,5 @@
 import { AdvantagesProps } from './advantages.props';
-import CheckIcon from './check.svg';
+import CheckSvg from './check.svg';
 
 import styles from './advantages.module.css';
 
@@ -8,7 +8,7 @@ export default function Advantages({ advantages }: AdvantagesProps) {
     <>
       {advantages.map((a) => (
         <div key={a._id} className={styles.advantage}>
-          <CheckIcon />
+          <CheckSvg />
           <div className={styles.title}>{a.title}</div>
           <hr className={styles.vline} />
           <div>{a.description}</div>

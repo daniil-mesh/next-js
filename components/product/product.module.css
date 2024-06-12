@@ -127,6 +127,10 @@
   color: var(--primary);
 }
 
+.hidden {
+  display: none;
+}
+
 @media screen and (width <= 640px) {
   .product {
     grid-template-columns: 1fr;

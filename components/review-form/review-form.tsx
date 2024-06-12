@@ -9,7 +9,7 @@ import Rating from '@/components/rating/rating';
 import Textarea from '@/components/textarea/textarea';
 
 import { ReviewFormProps } from './review-form.props';
-import CloseIcon from './close.svg';
+import CloseSvg from './close.svg';
 import styles from './review-form.module.css';
 
 export default function ReviewForm({
@@ -95,13 +95,13 @@ export default function ReviewForm({
         <div className={styles.successTitle}>Ваш отзыв отправлен</div>
         <div>Спасибо, ваш отзыв будет опубликован после проверки.</div>
         <button className={styles.close} aria-label="Закрыть оповещение">
-          <CloseIcon />
+          <CloseSvg />
         </button>
       </div>
       <div className={cn(styles.error, styles.panel)} role="alert">
         Что-то пошло не так, попробуйте обновить страницу
         <button className={styles.close} aria-label="Закрыть оповещение">
-          <CloseIcon />
+          <CloseSvg />
         </button>
       </div>
     </form>

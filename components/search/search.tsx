@@ -9,7 +9,7 @@ import Button from '@/components/button/button';
 import Input from '@/components/input/input';
 
 import { SearchProps } from './search.props';
-import GlassIcon from './glass.svg';
+import GlassSvg from './glass.svg';
 import styles from './search.module.css';
 
 export default function Search({ className, ...props }: SearchProps) {
@@ -42,7 +42,7 @@ export default function Search({ className, ...props }: SearchProps) {
         className={styles.button}
         aria-label="Search on the site"
       >
-        <GlassIcon />
+        <GlassSvg />
       </Button>
     </form>
   );

@@ -1,10 +1,10 @@
 import { EArrow } from '@/enums/arrow';
-import ArrowIcon from './arrow.svg';
-import ArrowImgProps from './arrow-img.props';
 
-import styles from './arrow-img.module.css';
+import ArrowImgProps from './arrow-icon.props';
+import ArrowSvg from './arrow.svg';
+import styles from './arrow-icon.module.css';
 
-export default function ArrowImg({ arrow }: ArrowImgProps) {
+export default function ArrowIcon({ arrow }: ArrowImgProps) {
   let cn = styles.arrow;
   switch (arrow) {
     case EArrow.None:
@@ -17,7 +17,7 @@ export default function ArrowImg({ arrow }: ArrowImgProps) {
 
   return (
     <span className={cn}>
-      <ArrowIcon />
+      <ArrowSvg />
     </span>
   );
 }

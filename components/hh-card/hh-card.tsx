@@ -1,7 +1,7 @@
 import { cf } from '@/helpers/currency-formatter';
 import { cn } from '@/helpers/class-names';
 import { IHhData } from '@/interfaces/page.interface';
-import RateIcon from './rate.svg';
+import RateSvg from './rate.svg';
 
 import styles from './hh-card.module.css';
 
@@ -22,27 +22,27 @@ export default function HhCard({
           <div className={styles.title}>Начальный</div>
           <div className={styles.salaryValue}>{cf(juniorSalary)}</div>
           <div className={styles.rate}>
-            <RateIcon className={styles.filled} />
-            <RateIcon />
-            <RateIcon />
+            <RateSvg className={styles.filled} />
+            <RateSvg />
+            <RateSvg />
           </div>
         </div>
         <div>
           <div className={styles.title}>Средний</div>
           <div className={styles.salaryValue}>{cf(middleSalary)}</div>
           <div className={styles.rate}>
-            <RateIcon className={styles.filled} />
-            <RateIcon className={styles.filled} />
-            <RateIcon />
+            <RateSvg className={styles.filled} />
+            <RateSvg className={styles.filled} />
+            <RateSvg />
           </div>
         </div>
         <div>
           <div className={styles.title}>Профессионал</div>
           <div className={styles.salaryValue}>{cf(seniorSalary)}</div>
           <div className={styles.rate}>
-            <RateIcon className={styles.filled} />
-            <RateIcon className={styles.filled} />
-            <RateIcon className={styles.filled} />
+            <RateSvg className={styles.filled} />
+            <RateSvg className={styles.filled} />
+            <RateSvg className={styles.filled} />
           </div>
         </div>
       </div>

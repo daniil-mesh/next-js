@@ -5,15 +5,16 @@ import { useEffect } from 'react';
 
 import useScrollY from '@/hooks/use-scroll-y';
 
-import ButtonIcon from './up.svg';
 import styles from './up.module.css';
+import { ButtonIcon } from '../button-icon/button-icon';
+import { EIconType, EIconView } from '@/enums/icon';
 
 export default function Up() {
   const controls = useAnimation();
   const y = useScrollY();
 
   useEffect(() => {
-    void controls.start({ opacity: y / document.body.scrollHeight });
+    void controls.start({ opacity: y / window.innerHeight });
   }, [y, controls]);
 
   const scrollToTop = () => {
@@ -27,9 +28,8 @@ export default function Up() {
       initial={{ opacity: 0 }}
     >
       <ButtonIcon
-        appearance="primary"
-        icon="up"
-        aria-label="Наверх"
+        view={EIconView.Primary}
+        icon={EIconType.Up}
         onClick={scrollToTop}
       />
     </motion.div>

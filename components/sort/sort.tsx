@@ -2,7 +2,7 @@ import { cn } from '@/helpers/class-names';
 import { ESortType } from '@/enums/sort';
 
 import { SortProps } from './sort.props';
-import SortIcon from './sort.svg';
+import SortSvg from './sort.svg';
 import styles from './sort.module.css';
 
 export default function Sort({
@@ -25,7 +25,7 @@ export default function Sort({
           [styles.reverse, sortType === ESortType.Rating && sortAsc]
         )}
       >
-        <SortIcon className={styles.sortIcon} />
+        <SortSvg className={styles.sortIcon} />
         По рейтингу
       </button>
       <button
@@ -36,7 +36,7 @@ export default function Sort({
           [styles.reverse, sortType === ESortType.Price && sortAsc]
         )}
       >
-        <SortIcon className={styles.sortIcon} />
+        <SortSvg className={styles.sortIcon} />
         По цене
       </button>
     </div>

@@ -7,8 +7,7 @@ export default function useScrollY() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = isBrowser ? window.scrollY : 0;
-      setScrollY(currentScrollY);
+      setScrollY(isBrowser ? window.scrollY : 0);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

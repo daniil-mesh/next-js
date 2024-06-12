@@ -32,6 +32,10 @@ function Product(
   const reviewsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!isReviewOpened) {
+      return;
+    }
+
     reviewsRef.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
@@ -39,11 +43,11 @@ function Product(
   }, [isReviewOpened]);
 
   const scrollToReview: MouseEventHandler<HTMLDivElement> = () => {
-    setIsReviewOpened(true);
+    setIsReviewOpened((isOpened) => !isOpened);
   };
 
   const handleOpenReview: MouseEventHandler<HTMLButtonElement> = () => {
-    setIsReviewOpened(!isReviewOpened);
+    setIsReviewOpened((isOpened) => !isOpened);
   };
 
   return (
@@ -151,7 +155,11 @@ function Product(
         </div>
       </div>
 
-      {isReviewOpened && <Reviews product={product} ref={reviewsRef} />}
+      <Reviews
+        product={product}
+        ref={reviewsRef}
+        className={cn([styles.hidden, !isReviewOpened])}
+      />
     </div>
   );
 }

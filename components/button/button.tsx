@@ -1,7 +1,7 @@
 import { cn } from '@/helpers/class-names';
 import { EArrow } from '@/enums/arrow';
 import { EView } from '@/enums/view';
-import ArrowImg from '@/components/arrow-img/arrow-img';
+import ArrowIcon from '@/components/arrow-icon/arrow-icon';
 import ButtonProps from './button.props';
 
 import styles from './button.module.css';
@@ -30,7 +30,7 @@ export default function Button({
       )}
       {...props}
     >
-      {children} <ArrowImg arrow={arrow} />
+      {children} <ArrowIcon arrow={arrow} />
     </button>
   );
 }

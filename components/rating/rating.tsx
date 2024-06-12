@@ -9,7 +9,7 @@ import {
 } from 'react';
 
 import RatingProps from './rating.props';
-import StarIcon from './star.svg';
+import StarSvg from './star.svg';
 import styles from './rating.module.css';
 import { cn } from '@/helpers/class-names';
 
@@ -40,7 +40,7 @@ function Rating(
           }}
           tabIndex={isEditable ? 0 : -1}
         >
-          <StarIcon />
+          <StarSvg />
         </span>
       );
     });
