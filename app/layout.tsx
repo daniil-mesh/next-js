@@ -2,10 +2,10 @@ import { Noto_Sans_KR } from 'next/font/google';
 import React from 'react';
 import type { Metadata } from 'next';
 
-import Footer from '@/components/footer/footer';
-import Header from '@/components/header/header';
-import Main from '@/components/main/main';
-import Sidebar from '@/components/sidebar/sidebar';
+import Footer from '@/layout/footer/footer';
+import Header from '@/layout/header/header';
+import Main from '@/layout/main/main';
+import Sidebar from '@/layout/sidebar/sidebar';
 import Up from '@/components/up/up';
 
 import './globals.css';

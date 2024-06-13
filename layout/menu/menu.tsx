@@ -76,7 +76,7 @@ export default function Menu() {
               <button
                 className={styles.secondLevel}
                 onClick={() => handleSecondLevel(m._id.secondCategory)}
-                aria-expanded={m.isOpened}
+                aria-expanded={isOpened}
               >
                 {m._id.secondCategory}
               </button>
@@ -87,7 +87,7 @@ export default function Menu() {
                 animate={isOpened ? 'visible' : 'hidden'}
                 className={styles.secondLevelBlock}
               >
-                {buildThirdLevel(route, m)}
+                {buildThirdLevel(route, m, isOpened)}
               </motion.ul>
             </li>
           );
@@ -96,12 +96,12 @@ export default function Menu() {
     );
   }
 
-  function buildThirdLevel(route: string, m: IMenuItem) {
+  function buildThirdLevel(route: string, m: IMenuItem, isOpened: boolean) {
     return m.pages.map((p) => (
       <motion.li key={p._id} variants={variantsChildren}>
         <Link
           href={`/${route}/${p.alias}`}
-          tabIndex={m.isOpened ? 0 : -1}
+          tabIndex={isOpened ? 0 : -1}
           className={cn(styles.thirdLevel, [
             styles.thirdLevelActive,
             `/${route}/${p.alias}` === path,

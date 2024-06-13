@@ -11,12 +11,6 @@ export default function Footer({
   return (
     <footer className={cn(className, styles.footer)} {...props}>
       <div>Sakret {new Date().getFullYear()}</div>
-      <a href="#" target="_blank">
-        1
-      </a>
-      <a href="#" target="_blank">
-        2
-      </a>
     </footer>
   );
 }
